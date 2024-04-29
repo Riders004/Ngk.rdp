@@ -28,7 +28,7 @@ jobs:
           copy winrar.exe C:\Users\Public\Desktop\winrar.exe
          # copy any.exe C:\Users\Public\Desktop\any.exe
       - name: Create Tunnel
-        run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe top 3389" '
+        run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp 3389" '
 
       - name: Connect to RDP Powered By The TechSavage!
         run: cmd /c start.bat
