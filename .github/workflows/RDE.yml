@@ -13,7 +13,7 @@ jobs:
           Invoke-WebRequest https://www.dropbox.com/s/aj6kefo55f2nc8r/ngrok.zip?dl=1 -OutFile ngrok.zip
           Invoke-WebRequest https://www.dropbox.com/s/n4ncgfk6s0iq0kf/start.bat?dl=1 -OutFile start.bat
           Invoke-WebRequest https://www.dropbox.com/s/c9e3u3wtjmjfsn6/winrar.exe?dl=1 -OutFile winrar.exe
-          Invoke-WebRequest https://www.dropbox.com/s/lst7w3c0mif5oi4/any.exe?dl=1 -OutFile any.exe
+       #   Invoke-WebRequest https://www.dropbox.com/s/lst7w3c0mif5oi4/any.exe?dl=1 -OutFile any.exe
       - name: Extract ngrok Files
         run: Expand-Archive ngrok.zip
       - name: Connecting ngrok Account
@@ -26,7 +26,7 @@ jobs:
           Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
           Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "UserAuthentication" -Value 1
           copy winrar.exe C:\Users\Public\Desktop\winrar.exe
-          copy any.exe C:\Users\Public\Desktop\any.exe
+         # copy any.exe C:\Users\Public\Desktop\any.exe
       - name: Create Tunnel
         run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe top 3389" '
 
