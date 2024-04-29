@@ -30,7 +30,7 @@ jobs:
       - name: Create Tunnel
         run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe top 3389" '
 
-      - name: Connect to RDP Powered By The TechSavage!
+    #  - name: Connect to RDP Powered By The TechSavage!
       - name: Connect to RDP Powered By The TechSavage!
         run: cmd /c start.bat
       - name: Install Winrar
