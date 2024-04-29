@@ -17,7 +17,7 @@ jobs:
       - name: Extract ngrok Files
         run: Expand-Archive ngrok.zip
       - name: Connecting ngrok Account
-        run: .\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+        run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
         env:
           NGROK_AUTH_TOKEN: "2flIOywrstSGhIfp8ida6fu4k8q_2AKkEVpducQBqqqZpvnbB"
       - name: Enable RDP Access
@@ -28,7 +28,7 @@ jobs:
           copy winrar.exe C:\Users\Public\Desktop\winrar.exe
          # copy any.exe C:\Users\Public\Desktop\any.exe
       - name: Create Tunnel
-        run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok.exe tcp 3389" '
+        run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp 3389" '
 
       - name: Connect to RDP Powered By The TechSavage!
         run: cmd /c start.bat
