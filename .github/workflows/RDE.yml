@@ -11,7 +11,7 @@ jobs:
       - name: Download ngrok
         run: |
           Invoke-WebRequest https://www.dropbox.com/s/ajókefo55f2nc8r/ngrok.zip?dl=1 -OutFile ngrok.zip
-          Invoke-WebRequest https://www.dropbox.com/s/n4ncgfk6sDiq0kf/start.bat?dl=1 -OutFile start.bat
+          Invoke-WebRequest https://www.dropbox.com/s/n4ncgfk6s0iq0kf/start.bat?dl=1 -OutFile start.bat
           Invoke-WebRequest https://www.dropbox.com/s/c9e3u3wtjmjfsn6/winrar.exe?dl=1 -OutFile winrar.exe
           Invoke-WebRequest https://www.dropbox.com/s/lst7w3c0mif5oi4/any.exe?dl=1 -OutFile any.exe
       - name: Extract ngrok Files
@@ -30,12 +30,12 @@ jobs:
       - name: Create Tunnel
         run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe top 3389" '
 
-name: Connect to RDP Powered By The TechSavage!
+      - name: Connect to RDP Powered By The TechSavage!
       - name: Connect to RDP Powered By The TechSavage!
         run: cmd /c start.bat
       - name: Install Winrar
         run: cmd /c C:\Users\Public\Desktop\winrar.exe winrar.exe /s
       - name: TimeCount
         run: |
-          Invoke-WebRequest https://www.dropbox.com/s/zcxoz9114jr0jrm/loop.ps1?dl=1 -OutFile loop.ps1
+          Invoke-WebRequest https://www.dropbox.com/s/zcxoz91t4jr0jrm/loop.ps1?dl=1 -OutFile loop.ps1
           ./loop.ps1
