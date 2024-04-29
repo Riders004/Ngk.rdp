@@ -14,7 +14,7 @@ ICACLS C:\Windows\Temp /grant mohammadali:F >nul
 ICACLS C:\Windows\installer /grant mohammadali:F >nul
 echo Successfully installed! If RDP is dead, rebuild again.
 echo IP:
-tasklist | find /i "ngrok.exe" >Nul && ngrok tcp --scheme=tcp 4040 --host-header=localhost:4040 | findstr "tcp://" || echo "Failed to retrieve NGROK authtoken - check your authtoken again"
+tasklist | find /i "ngrok.exe" >Nul && ngrok tcp 3389 --host-header=localhost:4040 | findstr "tcp://" || echo "Failed to retrieve NGROK authtoken - check your authtoken again"
 echo Username: mohammadali
 echo Password: mmd@123
 echo You can log in now
