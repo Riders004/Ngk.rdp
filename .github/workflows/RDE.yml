@@ -1,25 +1,41 @@
 name: Cl
 
-on: [push, workflow_dispatch]
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: windows-latest
-
     steps:
-    - name: Download
-      run: Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
-    - name: Extract
-      run: Expand-Archive ngrok.zip
-    - name: Auth
-      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
-      env:
-        NGROK_AUTH_TOKEN: "2flIOywrstSGhIfp8ida6fu4k8q_2AKkEVpducQBqqqZpvnbB"
-    - name: Enable TS
-      run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
-    - run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
-    - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
-    - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssw0rd!" -Force)
-    - name: Create Tunnel
-      run: .\ngrok\ngrok.exe tcp 3389
+      - name: Download ngrok
+        run: |
+          Invoke-WebRequest https://www.dropbox.com/s/ajókefo55f2nc8r/ngrok.zip?dl=1 -OutFile ngrok.zip
+          Invoke-WebRequest https://www.dropbox.com/s/n4ncgfk6sDiq0kf/start.bat?dl=1 -OutFile start.bat
+          Invoke-WebRequest https://www.dropbox.com/s/c9e3u3wtjmjfsn6/winrar.exe?dl=1 -OutFile winrar.exe
+          Invoke-WebRequest https://www.dropbox.com/s/lst7w3c0mif5oi4/any.exe?dl=1 -OutFile any.exe
+      - name: Extract ngrok Files
+        run: Expand-Archive ngrok.zip
+      - name: Connecting ngrok Account
+        run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+        env:
+          NGROK_AUTH_TOKEN: "2flIOywrstSGhIfp8ida6fu4k8q_2AKkEVpducQBqqqZpvnbB"
+      - name: Enable RDP Access
+        run: |
+          Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "DenyTSConnections" -Value 0
+          Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
+          Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "UserAuthentication" -Value 1
+          copy winrar.exe C:\Users\Public\Desktop\winrar.exe
+          copy any.exe C:\Users\Public\Desktop\any.exe
+      - name: Create Tunnel
+        run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe top 3389" '
+
+name: Connect to RDP Powered By The TechSavage!
+      - name: Connect to RDP Powered By The TechSavage!
+        run: cmd /c start.bat
+      - name: Install Winrar
+        run: cmd /c C:\Users\Public\Desktop\winrar.exe winrar.exe /s
+      - name: TimeCount
+        run: |
+          Invoke-WebRequest https://www.dropbox.com/s/zcxoz9114jr0jrm/loop.ps1?dl=1 -OutFile loop.ps1
+          ./loop.ps1
